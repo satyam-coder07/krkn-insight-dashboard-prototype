@@ -2,6 +2,11 @@
 
 **Live Demo:** [Explore the Interactive Dashboard](https://krkn-insight-dashboard-prototype.streamlit.app/)
 
+## Live Features
+* **Interactive SLO Monitoring:** Hover over time-series data to see exact latency spikes.
+* **Dynamic Chaos Injection:** Use the sidebar to trigger new experiment simulations and watch the UI update in real-time.
+* **Heuristic Analysis:** Navigate to the **AI Insights** tab to see how the tool correlates telemetry with failed scenarios.
+
 ###  LFX Mentorship Submission (Spring 2026)
 This repository is a Proof-of-Concept (PoC) developed specifically for the [LFX Mentorship Program](https://mentorship.lfx.linuxfoundation.org/). 
 

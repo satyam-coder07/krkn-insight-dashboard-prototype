@@ -26,6 +26,11 @@ st.markdown("""
     }
     .stAlert { border-radius: 8px; }
     div[data-testid="stMetricValue"] { font-size: 24px; }
+    
+    /* Hide Streamlit Branding */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
     </style>
     """, unsafe_allow_html=True)
 
@@ -127,7 +132,7 @@ with st.sidebar:
     st.title("🐙 Chaos Control")
     st.info("Simulate a new experiment run to test visualization logic.")
     
-    if st.button("🚀 Run New Experiment", type="primary"):
+    if st.button("Run New Experiment", type="primary"):
         with st.spinner("Injecting Chaos..."):
             time.sleep(0.8)
             st.session_state.simulation = run_simulation()
@@ -163,7 +168,7 @@ col4.metric("Avg Fitness", f"{avg_fitness:.2f}",
             delta="Healthy" if avg_fitness > 0.8 else "Degraded",
             delta_color="normal" if avg_fitness > 0.8 else "inverse")
 
-tab_perf, tab_outcome, tab_ai = st.tabs(["📊 Telemetry & SLOs", "🧪 Scenario Details", "🧠 AI Insights"])
+tab_perf, tab_outcome, tab_ai = st.tabs(["Telemetry & SLOs", "Scenario Details", "AI Insights"])
 
 with tab_perf:
     st.subheader("Network Latency vs. SLO")
@@ -192,7 +197,7 @@ with tab_outcome:
     ), use_container_width=True)
 
 with tab_ai:
-    st.subheader("🤖 Automated Root Cause Analysis (RCA)")
+    st.subheader("🧠 Automated Root Cause Analysis (RCA)")
     
     # Heuristic-based insight generation
     max_latency = df_telemetry['latency_ms'].max()
@@ -200,7 +205,7 @@ with tab_ai:
     culprit = next((r.name for r in results if r.outcome == 'failed'), None)
     
     if breached_slo or failed_scenarios > 0:
-        st.error("❌ Critical Anomaly Detected")
+        st.error(" Critical Anomaly Detected")
         st.markdown(f"""
         **AI Summary of Experiment `{config.experiment_id}`:**
         
@@ -209,5 +214,5 @@ with tab_ai:
         3. **Impact:** System resilience in `{config.target_cloud}` is insufficient for high-load I/O or Network scenarios.
         """)
     else:
-        st.success("✅ System Healthy")
+        st.success(" System Healthy")
         st.markdown(f"**AI Summary:** All metrics remained within operational boundaries.")
